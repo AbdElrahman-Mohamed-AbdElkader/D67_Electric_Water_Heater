@@ -1,0 +1,1814 @@
+
+Graduation_Project.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000884  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  000008d8  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000008d8  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000908  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000228  00000000  00000000  00000944  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   0000219f  00000000  00000000  00000b6c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000e2b  00000000  00000000  00002d0b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000012b9  00000000  00000000  00003b36  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  0000032c  00000000  00000000  00004df0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000a10  00000000  00000000  0000511c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00001051  00000000  00000000  00005b2c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000190  00000000  00000000  00006b7d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 32 00 	jmp	0x64	; 0x64 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  54:	cf 02       	muls	r28, r31
+  56:	d2 02       	muls	r29, r18
+  58:	d5 02       	muls	r29, r21
+  5a:	d8 02       	muls	r29, r24
+  5c:	db 02       	muls	r29, r27
+  5e:	de 02       	muls	r29, r30
+  60:	e1 02       	muls	r30, r17
+  62:	e4 02       	muls	r30, r20
+
+00000064 <__ctors_end>:
+  64:	11 24       	eor	r1, r1
+  66:	1f be       	out	0x3f, r1	; 63
+  68:	cf e5       	ldi	r28, 0x5F	; 95
+  6a:	d8 e0       	ldi	r29, 0x08	; 8
+  6c:	de bf       	out	0x3e, r29	; 62
+  6e:	cd bf       	out	0x3d, r28	; 61
+  70:	0e 94 3e 00 	call	0x7c	; 0x7c <main>
+  74:	0c 94 40 04 	jmp	0x880	; 0x880 <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <main>:
+
+#include "main.h"
+
+
+int main(void)
+{
+  7c:	cf 93       	push	r28
+  7e:	df 93       	push	r29
+  80:	cd b7       	in	r28, 0x3d	; 61
+  82:	de b7       	in	r29, 0x3e	; 62
+  84:	e4 97       	sbiw	r28, 0x34	; 52
+  86:	0f b6       	in	r0, 0x3f	; 63
+  88:	f8 94       	cli
+  8a:	de bf       	out	0x3e, r29	; 62
+  8c:	0f be       	out	0x3f, r0	; 63
+  8e:	cd bf       	out	0x3d, r28	; 61
+	uint32_t sum=0;
+	uint32_t average=0;
+	uint32_t arr[10];
+	signed int Remainder=0;
+	
+	BTN0_Initialize();
+  90:	0e 94 40 02 	call	0x480	; 0x480 <BTN0_Initialize>
+	BTN1_Initialize();
+  94:	0e 94 4b 02 	call	0x496	; 0x496 <BTN1_Initialize>
+	BTN2_Initialize();
+  98:	0e 94 56 02 	call	0x4ac	; 0x4ac <BTN2_Initialize>
+	
+	LED0_Initialization();
+  9c:	0e 94 8b 02 	call	0x516	; 0x516 <LED0_Initialization>
+	LED1_Initialization();
+  a0:	0e 94 9d 02 	call	0x53a	; 0x53a <LED1_Initialization>
+	LED2_Initialization();
+  a4:	0e 94 af 02 	call	0x55e	; 0x55e <LED2_Initialization>
+	
+	SEVENSEGMENT_Initialize();
+  a8:	0e 94 61 02 	call	0x4c2	; 0x4c2 <SEVENSEGMENT_Initialize>
+	
+	ADC_Initialize_WithoutInterrupt(ADC_Avcc,ADC_PRE64);
+  ac:	66 e0       	ldi	r22, 0x06	; 6
+  ae:	81 e0       	ldi	r24, 0x01	; 1
+  b0:	0e 94 c1 02 	call	0x582	; 0x582 <ADC_Initialize_WithoutInterrupt>
+	
+	EEPROM_Write_Byte(1,60);
+  b4:	6c e3       	ldi	r22, 0x3C	; 60
+  b6:	81 e0       	ldi	r24, 0x01	; 1
+  b8:	90 e0       	ldi	r25, 0x00	; 0
+  ba:	0e 94 ff 03 	call	0x7fe	; 0x7fe <EEPROM_Write_Byte>
+	uint8_t buttonState0=BTN0_NPRESSED;
+	uint8_t buttonState1=BTN1_NPRESSED;
+	uint8_t buttonState2=BTN2_NPRESSED;
+	uint8_t data=60;
+	uint8_t Mode_Counter=0;
+	uint8_t flag_mode=0;
+  be:	00 e0       	ldi	r16, 0x00	; 0
+int main(void)
+{
+	uint8_t buttonState0=BTN0_NPRESSED;
+	uint8_t buttonState1=BTN1_NPRESSED;
+	uint8_t buttonState2=BTN2_NPRESSED;
+	uint8_t data=60;
+  c0:	0f 2e       	mov	r0, r31
+  c2:	fc e3       	ldi	r31, 0x3C	; 60
+  c4:	3f 2e       	mov	r3, r31
+  c6:	f0 2d       	mov	r31, r0
+						{
+							data=75;
+						}
+						//Write the new set temperature to the EEPROM
+						EEPROM_Write_Byte(1,data);
+						Mode_Counter=0;
+  c8:	1a aa       	std	Y+50, r1	; 0x32
+						{
+							data=75;
+						}
+						//Write the new set temperature to the EEPROM
+						EEPROM_Write_Byte(1,data);
+						Mode_Counter=0;
+  ca:	21 2c       	mov	r2, r1
+					act_val=(val/2)-2;
+				}
+				//Display current temperature on Seven Segment
+				SEVENSEGMENT_Enable();
+				SEVENSEGMENT_DisplayNumber(act_val);
+				arr[k]=act_val;
+  cc:	ce 01       	movw	r24, r28
+  ce:	01 96       	adiw	r24, 0x01	; 1
+  d0:	9a a7       	std	Y+42, r25	; 0x2a
+  d2:	89 a7       	std	Y+41, r24	; 0x29
+  d4:	6e 01       	movw	r12, r28
+  d6:	99 e2       	ldi	r25, 0x29	; 41
+  d8:	c9 0e       	add	r12, r25
+  da:	d1 1c       	adc	r13, r1
+  dc:	29 a5       	ldd	r18, Y+41	; 0x29
+  de:	2b ab       	std	Y+51, r18	; 0x33
+  e0:	8a a5       	ldd	r24, Y+42	; 0x2a
+  e2:	8c ab       	std	Y+52, r24	; 0x34
+		{
+			while(flag_mode==1)
+			{
+				if (m==20)
+				{
+					m=0;
+  e4:	1e a6       	std	Y+46, r1	; 0x2e
+  e6:	1f a6       	std	Y+47, r1	; 0x2f
+  e8:	18 aa       	std	Y+48, r1	; 0x30
+  ea:	19 aa       	std	Y+49, r1	; 0x31
+		iter=0;
+		flag_sum=0;
+		flag_heating_element_led=0;
+		average=0;
+		//Off mode
+		if (flag_mode==0)
+  ec:	01 11       	cpse	r16, r1
+  ee:	12 c0       	rjmp	.+36     	; 0x114 <main+0x98>
+		{
+			//Turn off all display
+			LED0_OFF();
+  f0:	0e 94 97 02 	call	0x52e	; 0x52e <LED0_OFF>
+			LED1_OFF();
+  f4:	0e 94 a9 02 	call	0x552	; 0x552 <LED1_OFF>
+			LED2_OFF();
+  f8:	0e 94 bb 02 	call	0x576	; 0x576 <LED2_OFF>
+			SEVENSEGMENT_Disable();
+  fc:	0e 94 72 02 	call	0x4e4	; 0x4e4 <SEVENSEGMENT_Disable>
+			//If ON/OFF is pressed, turn ON display
+			buttonState0=BTN0_Read();
+ 100:	0e 94 46 02 	call	0x48c	; 0x48c <BTN0_Read>
+			if (buttonState0==BTN0_PRESSED)
+ 104:	81 30       	cpi	r24, 0x01	; 1
+ 106:	91 f7       	brne	.-28     	; 0xec <main+0x70>
+			{
+				while(buttonState0==BTN0_PRESSED)
+				{
+					buttonState0=BTN0_Read();
+ 108:	0e 94 46 02 	call	0x48c	; 0x48c <BTN0_Read>
+			SEVENSEGMENT_Disable();
+			//If ON/OFF is pressed, turn ON display
+			buttonState0=BTN0_Read();
+			if (buttonState0==BTN0_PRESSED)
+			{
+				while(buttonState0==BTN0_PRESSED)
+ 10c:	81 30       	cpi	r24, 0x01	; 1
+ 10e:	e1 f3       	breq	.-8      	; 0x108 <main+0x8c>
+				{
+					buttonState0=BTN0_Read();
+				}
+				flag_mode=1;
+ 110:	01 e0       	ldi	r16, 0x01	; 1
+ 112:	ec cf       	rjmp	.-40     	; 0xec <main+0x70>
+			}
+		}
+		//Current temperature display mode
+		else if(flag_mode==1)
+ 114:	01 30       	cpi	r16, 0x01	; 1
+ 116:	09 f0       	breq	.+2      	; 0x11a <main+0x9e>
+ 118:	d9 c0       	rjmp	.+434    	; 0x2cc <main+0x250>
+ 11a:	0b c0       	rjmp	.+22     	; 0x132 <main+0xb6>
+		{
+			while(flag_mode==1)
+			{
+				if (m==20)
+ 11c:	94 e1       	ldi	r25, 0x14	; 20
+ 11e:	49 16       	cp	r4, r25
+ 120:	51 04       	cpc	r5, r1
+ 122:	61 04       	cpc	r6, r1
+ 124:	71 04       	cpc	r7, r1
+ 126:	91 f4       	brne	.+36     	; 0x14c <main+0xd0>
+				{
+					m=0;
+ 128:	4e a4       	ldd	r4, Y+46	; 0x2e
+ 12a:	5f a4       	ldd	r5, Y+47	; 0x2f
+ 12c:	68 a8       	ldd	r6, Y+48	; 0x30
+ 12e:	79 a8       	ldd	r7, Y+49	; 0x31
+ 130:	0d c0       	rjmp	.+26     	; 0x14c <main+0xd0>
+ 132:	81 2c       	mov	r8, r1
+ 134:	91 2c       	mov	r9, r1
+ 136:	a1 2c       	mov	r10, r1
+ 138:	b1 2c       	mov	r11, r1
+ 13a:	1b a6       	std	Y+43, r1	; 0x2b
+ 13c:	1d a6       	std	Y+45, r1	; 0x2d
+ 13e:	41 2c       	mov	r4, r1
+ 140:	51 2c       	mov	r5, r1
+ 142:	61 2c       	mov	r6, r1
+ 144:	71 2c       	mov	r7, r1
+					}
+				}
+				_delay_ms(100);
+				//If ON/OFF button is pressed, turn all display OFF (go to OFF mode)
+				buttonState0=BTN0_Read();
+				if (buttonState0==BTN0_PRESSED)
+ 146:	0c a7       	std	Y+44, r16	; 0x2c
+					{
+						sum=sum+arr[iter];
+					}
+					//Get the average value every 100ms
+					average=sum/10;
+					Remainder=data-average;
+ 148:	e3 2c       	mov	r14, r3
+ 14a:	f1 2c       	mov	r15, r1
+				if (m==20)
+				{
+					m=0;
+				}
+				//Read current temperature from ADC
+				val=ADC_Read(ADC_channel_6);
+ 14c:	86 e0       	ldi	r24, 0x06	; 6
+ 14e:	0e 94 c6 02 	call	0x58c	; 0x58c <ADC_Read>
+				if (val<52)
+ 152:	84 33       	cpi	r24, 0x34	; 52
+ 154:	91 05       	cpc	r25, r1
+ 156:	20 f4       	brcc	.+8      	; 0x160 <main+0xe4>
+				{
+					act_val=val/2;
+ 158:	8c 01       	movw	r16, r24
+ 15a:	16 95       	lsr	r17
+ 15c:	07 95       	ror	r16
+ 15e:	11 c0       	rjmp	.+34     	; 0x182 <main+0x106>
+				}
+				else if (val>=52 && val<=125)
+ 160:	9c 01       	movw	r18, r24
+ 162:	24 53       	subi	r18, 0x34	; 52
+ 164:	31 09       	sbc	r19, r1
+ 166:	2a 34       	cpi	r18, 0x4A	; 74
+ 168:	31 05       	cpc	r19, r1
+ 16a:	30 f4       	brcc	.+12     	; 0x178 <main+0xfc>
+				{
+					act_val=(val/2)-1;
+ 16c:	96 95       	lsr	r25
+ 16e:	87 95       	ror	r24
+ 170:	8c 01       	movw	r16, r24
+ 172:	01 50       	subi	r16, 0x01	; 1
+ 174:	11 09       	sbc	r17, r1
+ 176:	05 c0       	rjmp	.+10     	; 0x182 <main+0x106>
+				}
+				else
+				{
+					act_val=(val/2)-2;
+ 178:	96 95       	lsr	r25
+ 17a:	87 95       	ror	r24
+ 17c:	8c 01       	movw	r16, r24
+ 17e:	02 50       	subi	r16, 0x02	; 2
+ 180:	11 09       	sbc	r17, r1
+				}
+				//Display current temperature on Seven Segment
+				SEVENSEGMENT_Enable();
+ 182:	0e 94 6c 02 	call	0x4d8	; 0x4d8 <SEVENSEGMENT_Enable>
+				SEVENSEGMENT_DisplayNumber(act_val);
+ 186:	80 2f       	mov	r24, r16
+ 188:	0e 94 78 02 	call	0x4f0	; 0x4f0 <SEVENSEGMENT_DisplayNumber>
+				arr[k]=act_val;
+ 18c:	f4 01       	movw	r30, r8
+ 18e:	ee 0f       	add	r30, r30
+ 190:	ff 1f       	adc	r31, r31
+ 192:	ee 0f       	add	r30, r30
+ 194:	ff 1f       	adc	r31, r31
+ 196:	81 e0       	ldi	r24, 0x01	; 1
+ 198:	90 e0       	ldi	r25, 0x00	; 0
+ 19a:	8c 0f       	add	r24, r28
+ 19c:	9d 1f       	adc	r25, r29
+ 19e:	e8 0f       	add	r30, r24
+ 1a0:	f9 1f       	adc	r31, r25
+ 1a2:	c8 01       	movw	r24, r16
+ 1a4:	a0 e0       	ldi	r26, 0x00	; 0
+ 1a6:	b0 e0       	ldi	r27, 0x00	; 0
+ 1a8:	80 83       	st	Z, r24
+ 1aa:	91 83       	std	Z+1, r25	; 0x01
+ 1ac:	a2 83       	std	Z+2, r26	; 0x02
+ 1ae:	b3 83       	std	Z+3, r27	; 0x03
+				if (k==9)
+ 1b0:	99 e0       	ldi	r25, 0x09	; 9
+ 1b2:	89 16       	cp	r8, r25
+ 1b4:	91 04       	cpc	r9, r1
+ 1b6:	a1 04       	cpc	r10, r1
+ 1b8:	b1 04       	cpc	r11, r1
+ 1ba:	09 f0       	breq	.+2      	; 0x1be <main+0x142>
+ 1bc:	35 c1       	rjmp	.+618    	; 0x428 <__LOCK_REGION_LENGTH__+0x28>
+				{
+					flag_sum=1;
+					k=0;
+ 1be:	8e a4       	ldd	r8, Y+46	; 0x2e
+ 1c0:	9f a4       	ldd	r9, Y+47	; 0x2f
+ 1c2:	a8 a8       	ldd	r10, Y+48	; 0x30
+ 1c4:	b9 a8       	ldd	r11, Y+49	; 0x31
+ 1c6:	eb a9       	ldd	r30, Y+51	; 0x33
+ 1c8:	fc a9       	ldd	r31, Y+52	; 0x34
+ 1ca:	6e a5       	ldd	r22, Y+46	; 0x2e
+ 1cc:	7f a5       	ldd	r23, Y+47	; 0x2f
+ 1ce:	88 a9       	ldd	r24, Y+48	; 0x30
+ 1d0:	99 a9       	ldd	r25, Y+49	; 0x31
+ 1d2:	dc 01       	movw	r26, r24
+ 1d4:	cb 01       	movw	r24, r22
+				if (flag_sum==1)
+				{
+					sum=0;
+					for (iter=0;iter<10;iter++)
+					{
+						sum=sum+arr[iter];
+ 1d6:	01 91       	ld	r16, Z+
+ 1d8:	11 91       	ld	r17, Z+
+ 1da:	21 91       	ld	r18, Z+
+ 1dc:	31 91       	ld	r19, Z+
+ 1de:	80 0f       	add	r24, r16
+ 1e0:	91 1f       	adc	r25, r17
+ 1e2:	a2 1f       	adc	r26, r18
+ 1e4:	b3 1f       	adc	r27, r19
+					k=0;
+				}
+				if (flag_sum==1)
+				{
+					sum=0;
+					for (iter=0;iter<10;iter++)
+ 1e6:	ec 15       	cp	r30, r12
+ 1e8:	fd 05       	cpc	r31, r13
+ 1ea:	a9 f7       	brne	.-22     	; 0x1d6 <main+0x15a>
+ 1ec:	bc 01       	movw	r22, r24
+ 1ee:	cd 01       	movw	r24, r26
+					{
+						sum=sum+arr[iter];
+					}
+					//Get the average value every 100ms
+					average=sum/10;
+ 1f0:	2a e0       	ldi	r18, 0x0A	; 10
+ 1f2:	30 e0       	ldi	r19, 0x00	; 0
+ 1f4:	40 e0       	ldi	r20, 0x00	; 0
+ 1f6:	50 e0       	ldi	r21, 0x00	; 0
+ 1f8:	0e 94 18 04 	call	0x830	; 0x830 <__udivmodsi4>
+					Remainder=data-average;
+ 1fc:	c7 01       	movw	r24, r14
+ 1fe:	82 1b       	sub	r24, r18
+ 200:	93 0b       	sbc	r25, r19
+					//If the actual temperature is less than the set temperature
+					if (Remainder>=5)
+ 202:	85 30       	cpi	r24, 0x05	; 5
+ 204:	91 05       	cpc	r25, r1
+ 206:	3c f0       	brlt	.+14     	; 0x216 <main+0x19a>
+					{
+						//Turn ON the heating element and turn OFF the cooling element
+						LED0_ON();
+ 208:	0e 94 91 02 	call	0x522	; 0x522 <LED0_ON>
+						LED1_OFF();
+ 20c:	0e 94 a9 02 	call	0x552	; 0x552 <LED1_OFF>
+ 210:	21 e0       	ldi	r18, 0x01	; 1
+ 212:	2d a7       	std	Y+45, r18	; 0x2d
+ 214:	15 c0       	rjmp	.+42     	; 0x240 <main+0x1c4>
+						flag_heating_element_led=1;
+					}
+					//If the actual temperature is higher than the set temperature
+					else if (Remainder<=-5)
+ 216:	8c 3f       	cpi	r24, 0xFC	; 252
+ 218:	9f 4f       	sbci	r25, 0xFF	; 255
+ 21a:	3c f4       	brge	.+14     	; 0x22a <main+0x1ae>
+					{
+						//Turn OFF the heating element and turn ON the cooling element
+						LED0_OFF();
+ 21c:	0e 94 97 02 	call	0x52e	; 0x52e <LED0_OFF>
+						LED1_ON();
+ 220:	0e 94 a3 02 	call	0x546	; 0x546 <LED1_ON>
+						//Turn ON heating element LED when cooling element is ON
+						LED2_ON();
+ 224:	0e 94 b5 02 	call	0x56a	; 0x56a <LED2_ON>
+ 228:	04 c1       	rjmp	.+520    	; 0x432 <__LOCK_REGION_LENGTH__+0x32>
+						flag_heating_element_led=0;
+					}
+					else
+					{
+						//Turn OFF both the heating element and the cooling element if the temperature is within set temperature bounds
+						LED0_OFF();
+ 22a:	0e 94 97 02 	call	0x52e	; 0x52e <LED0_OFF>
+						LED1_OFF();
+ 22e:	0e 94 a9 02 	call	0x552	; 0x552 <LED1_OFF>
+						LED2_OFF();
+ 232:	0e 94 bb 02 	call	0x576	; 0x576 <LED2_OFF>
+ 236:	fd c0       	rjmp	.+506    	; 0x432 <__LOCK_REGION_LENGTH__+0x32>
+						flag_heating_element_led=0;
+					}
+				}
+				//When heating element is ON, blink the heating element LED
+				if (flag_heating_element_led==1)
+ 238:	8b a5       	ldd	r24, Y+43	; 0x2b
+ 23a:	81 30       	cpi	r24, 0x01	; 1
+ 23c:	09 f0       	breq	.+2      	; 0x240 <main+0x1c4>
+ 23e:	fe c0       	rjmp	.+508    	; 0x43c <__LOCK_REGION_LENGTH__+0x3c>
+				{
+					if (m<10)
+ 240:	9a e0       	ldi	r25, 0x0A	; 10
+ 242:	49 16       	cp	r4, r25
+ 244:	51 04       	cpc	r5, r1
+ 246:	61 04       	cpc	r6, r1
+ 248:	71 04       	cpc	r7, r1
+ 24a:	28 f4       	brcc	.+10     	; 0x256 <main+0x1da>
+					{
+						LED2_ON();
+ 24c:	0e 94 b5 02 	call	0x56a	; 0x56a <LED2_ON>
+ 250:	21 e0       	ldi	r18, 0x01	; 1
+ 252:	2b a7       	std	Y+43, r18	; 0x2b
+ 254:	04 c0       	rjmp	.+8      	; 0x25e <main+0x1e2>
+					}
+					else
+					{
+						LED2_OFF();
+ 256:	0e 94 bb 02 	call	0x576	; 0x576 <LED2_OFF>
+ 25a:	81 e0       	ldi	r24, 0x01	; 1
+ 25c:	8b a7       	std	Y+43, r24	; 0x2b
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 25e:	9f ef       	ldi	r25, 0xFF	; 255
+ 260:	21 ee       	ldi	r18, 0xE1	; 225
+ 262:	84 e0       	ldi	r24, 0x04	; 4
+ 264:	91 50       	subi	r25, 0x01	; 1
+ 266:	20 40       	sbci	r18, 0x00	; 0
+ 268:	80 40       	sbci	r24, 0x00	; 0
+ 26a:	e1 f7       	brne	.-8      	; 0x264 <main+0x1e8>
+ 26c:	00 c0       	rjmp	.+0      	; 0x26e <main+0x1f2>
+ 26e:	00 00       	nop
+					}
+				}
+				_delay_ms(100);
+				//If ON/OFF button is pressed, turn all display OFF (go to OFF mode)
+				buttonState0=BTN0_Read();
+ 270:	0e 94 46 02 	call	0x48c	; 0x48c <BTN0_Read>
+				if (buttonState0==BTN0_PRESSED)
+ 274:	81 30       	cpi	r24, 0x01	; 1
+ 276:	31 f4       	brne	.+12     	; 0x284 <main+0x208>
+				{
+					while(buttonState0==BTN0_PRESSED)
+					{
+						buttonState0=BTN0_Read();
+ 278:	0e 94 46 02 	call	0x48c	; 0x48c <BTN0_Read>
+				_delay_ms(100);
+				//If ON/OFF button is pressed, turn all display OFF (go to OFF mode)
+				buttonState0=BTN0_Read();
+				if (buttonState0==BTN0_PRESSED)
+				{
+					while(buttonState0==BTN0_PRESSED)
+ 27c:	81 30       	cpi	r24, 0x01	; 1
+ 27e:	e1 f3       	breq	.-8      	; 0x278 <main+0x1fc>
+					{
+						buttonState0=BTN0_Read();
+					}
+					flag_mode=0;
+ 280:	0a a9       	ldd	r16, Y+50	; 0x32
+ 282:	01 c0       	rjmp	.+2      	; 0x286 <main+0x20a>
+ 284:	0c a5       	ldd	r16, Y+44	; 0x2c
+				}
+				//If Up OR Down button is pressed, go to temperature selection mode
+				buttonState1=BTN1_Read();
+ 286:	0e 94 51 02 	call	0x4a2	; 0x4a2 <BTN1_Read>
+ 28a:	18 2f       	mov	r17, r24
+				buttonState2=BTN2_Read();
+ 28c:	0e 94 5c 02 	call	0x4b8	; 0x4b8 <BTN2_Read>
+				if (buttonState1==BTN1_PRESSED || buttonState2==BTN2_PRESSED)
+ 290:	11 30       	cpi	r17, 0x01	; 1
+ 292:	41 f0       	breq	.+16     	; 0x2a4 <main+0x228>
+ 294:	81 30       	cpi	r24, 0x01	; 1
+ 296:	61 f4       	brne	.+24     	; 0x2b0 <main+0x234>
+ 298:	05 c0       	rjmp	.+10     	; 0x2a4 <main+0x228>
+				{
+					while(buttonState1==BTN1_PRESSED || buttonState2==BTN2_PRESSED)
+					{
+						buttonState1=BTN1_Read();
+ 29a:	0e 94 51 02 	call	0x4a2	; 0x4a2 <BTN1_Read>
+ 29e:	18 2f       	mov	r17, r24
+						buttonState2=BTN2_Read();
+ 2a0:	0e 94 5c 02 	call	0x4b8	; 0x4b8 <BTN2_Read>
+				//If Up OR Down button is pressed, go to temperature selection mode
+				buttonState1=BTN1_Read();
+				buttonState2=BTN2_Read();
+				if (buttonState1==BTN1_PRESSED || buttonState2==BTN2_PRESSED)
+				{
+					while(buttonState1==BTN1_PRESSED || buttonState2==BTN2_PRESSED)
+ 2a4:	11 30       	cpi	r17, 0x01	; 1
+ 2a6:	c9 f3       	breq	.-14     	; 0x29a <main+0x21e>
+ 2a8:	81 30       	cpi	r24, 0x01	; 1
+ 2aa:	b9 f3       	breq	.-18     	; 0x29a <main+0x21e>
+					{
+						buttonState1=BTN1_Read();
+						buttonState2=BTN2_Read();
+					}
+					flag_mode=2;
+ 2ac:	02 e0       	ldi	r16, 0x02	; 2
+ 2ae:	1e cf       	rjmp	.-452    	; 0xec <main+0x70>
+				}
+				//Increment the counters
+				k++;
+ 2b0:	9f ef       	ldi	r25, 0xFF	; 255
+ 2b2:	89 1a       	sub	r8, r25
+ 2b4:	99 0a       	sbc	r9, r25
+ 2b6:	a9 0a       	sbc	r10, r25
+ 2b8:	b9 0a       	sbc	r11, r25
+				m++;
+ 2ba:	2f ef       	ldi	r18, 0xFF	; 255
+ 2bc:	42 1a       	sub	r4, r18
+ 2be:	52 0a       	sbc	r5, r18
+ 2c0:	62 0a       	sbc	r6, r18
+ 2c2:	72 0a       	sbc	r7, r18
+			}
+		}
+		//Current temperature display mode
+		else if(flag_mode==1)
+		{
+			while(flag_mode==1)
+ 2c4:	01 30       	cpi	r16, 0x01	; 1
+ 2c6:	09 f4       	brne	.+2      	; 0x2ca <main+0x24e>
+ 2c8:	29 cf       	rjmp	.-430    	; 0x11c <main+0xa0>
+ 2ca:	10 cf       	rjmp	.-480    	; 0xec <main+0x70>
+				k++;
+				m++;
+			}
+		}
+		//Temperature selection mode
+		else if (flag_mode==2)
+ 2cc:	02 30       	cpi	r16, 0x02	; 2
+ 2ce:	09 f0       	breq	.+2      	; 0x2d2 <main+0x256>
+ 2d0:	0d cf       	rjmp	.-486    	; 0xec <main+0x70>
+ 2d2:	9a c0       	rjmp	.+308    	; 0x408 <__LOCK_REGION_LENGTH__+0x8>
+			{
+				while(i<10)
+				{
+					//The ON part of the blinking
+					//Read the set temperature from the EEPROM
+					data=EEPROM_Read_Byte(1);
+ 2d4:	81 e0       	ldi	r24, 0x01	; 1
+ 2d6:	90 e0       	ldi	r25, 0x00	; 0
+ 2d8:	0e 94 0b 04 	call	0x816	; 0x816 <EEPROM_Read_Byte>
+ 2dc:	08 2f       	mov	r16, r24
+					//Display the set temperature on the Seven Segment
+					SEVENSEGMENT_Enable();
+ 2de:	0e 94 6c 02 	call	0x4d8	; 0x4d8 <SEVENSEGMENT_Enable>
+					SEVENSEGMENT_DisplayNumber(data);
+ 2e2:	80 2f       	mov	r24, r16
+ 2e4:	0e 94 78 02 	call	0x4f0	; 0x4f0 <SEVENSEGMENT_DisplayNumber>
+ 2e8:	8f ef       	ldi	r24, 0xFF	; 255
+ 2ea:	91 ee       	ldi	r25, 0xE1	; 225
+ 2ec:	24 e0       	ldi	r18, 0x04	; 4
+ 2ee:	81 50       	subi	r24, 0x01	; 1
+ 2f0:	90 40       	sbci	r25, 0x00	; 0
+ 2f2:	20 40       	sbci	r18, 0x00	; 0
+ 2f4:	e1 f7       	brne	.-8      	; 0x2ee <main+0x272>
+ 2f6:	00 c0       	rjmp	.+0      	; 0x2f8 <main+0x27c>
+ 2f8:	00 00       	nop
+					_delay_ms(100);
+					i++;
+					//If ON/OFF is pressed, go to OFF mode
+					buttonState0=BTN0_Read();
+ 2fa:	0e 94 46 02 	call	0x48c	; 0x48c <BTN0_Read>
+					if (buttonState0==BTN0_PRESSED)
+ 2fe:	81 30       	cpi	r24, 0x01	; 1
+ 300:	31 f4       	brne	.+12     	; 0x30e <main+0x292>
+					{
+						while(buttonState0==BTN0_PRESSED)
+						{
+							buttonState0=BTN0_Read();
+ 302:	0e 94 46 02 	call	0x48c	; 0x48c <BTN0_Read>
+					i++;
+					//If ON/OFF is pressed, go to OFF mode
+					buttonState0=BTN0_Read();
+					if (buttonState0==BTN0_PRESSED)
+					{
+						while(buttonState0==BTN0_PRESSED)
+ 306:	81 30       	cpi	r24, 0x01	; 1
+ 308:	e1 f3       	breq	.-8      	; 0x302 <main+0x286>
+						{
+							buttonState0=BTN0_Read();
+						}
+						flag_mode=0;
+ 30a:	aa a8       	ldd	r10, Y+50	; 0x32
+ 30c:	ad c0       	rjmp	.+346    	; 0x468 <__LOCK_REGION_LENGTH__+0x68>
+						break;
+					}
+					//If UP button is pressed
+					buttonState1=BTN1_Read();
+ 30e:	0e 94 51 02 	call	0x4a2	; 0x4a2 <BTN1_Read>
+					if (buttonState1==BTN1_PRESSED)
+ 312:	81 30       	cpi	r24, 0x01	; 1
+ 314:	09 f0       	breq	.+2      	; 0x318 <main+0x29c>
+ 316:	a2 c0       	rjmp	.+324    	; 0x45c <__LOCK_REGION_LENGTH__+0x5c>
+					{
+						while(buttonState1==BTN1_PRESSED)
+						{
+							buttonState1=BTN1_Read();
+ 318:	0e 94 51 02 	call	0x4a2	; 0x4a2 <BTN1_Read>
+					}
+					//If UP button is pressed
+					buttonState1=BTN1_Read();
+					if (buttonState1==BTN1_PRESSED)
+					{
+						while(buttonState1==BTN1_PRESSED)
+ 31c:	81 30       	cpi	r24, 0x01	; 1
+ 31e:	e1 f3       	breq	.-8      	; 0x318 <main+0x29c>
+						{
+							buttonState1=BTN1_Read();
+						}
+						//Increase the set temperature by 5, up until 75
+						data=data+5;
+ 320:	0b 5f       	subi	r16, 0xFB	; 251
+ 322:	0c 34       	cpi	r16, 0x4C	; 76
+ 324:	08 f0       	brcs	.+2      	; 0x328 <main+0x2ac>
+ 326:	0b e4       	ldi	r16, 0x4B	; 75
+						if (data>75)
+						{
+							data=75;
+						}
+						//Write the new set temperature to the EEPROM
+						EEPROM_Write_Byte(1,data);
+ 328:	60 2f       	mov	r22, r16
+ 32a:	81 e0       	ldi	r24, 0x01	; 1
+ 32c:	90 e0       	ldi	r25, 0x00	; 0
+ 32e:	0e 94 ff 03 	call	0x7fe	; 0x7fe <EEPROM_Write_Byte>
+						Mode_Counter=0;
+					}
+					//If Down button is pressed
+					buttonState2=BTN2_Read();
+ 332:	0e 94 5c 02 	call	0x4b8	; 0x4b8 <BTN2_Read>
+					if (buttonState2==BTN2_PRESSED)
+ 336:	81 30       	cpi	r24, 0x01	; 1
+ 338:	79 f4       	brne	.+30     	; 0x358 <main+0x2dc>
+					{
+						while(buttonState2==BTN2_PRESSED)
+						{
+							buttonState2=BTN2_Read();
+ 33a:	0e 94 5c 02 	call	0x4b8	; 0x4b8 <BTN2_Read>
+					}
+					//If Down button is pressed
+					buttonState2=BTN2_Read();
+					if (buttonState2==BTN2_PRESSED)
+					{
+						while(buttonState2==BTN2_PRESSED)
+ 33e:	81 30       	cpi	r24, 0x01	; 1
+ 340:	e1 f3       	breq	.-8      	; 0x33a <main+0x2be>
+						{
+							buttonState2=BTN2_Read();
+						}
+						//Reduce the set temperature by 5, down until 35
+						data=data-5;
+ 342:	05 50       	subi	r16, 0x05	; 5
+						if (data<35)
+ 344:	03 32       	cpi	r16, 0x23	; 35
+ 346:	08 f4       	brcc	.+2      	; 0x34a <main+0x2ce>
+						{
+							data=35;
+ 348:	03 e2       	ldi	r16, 0x23	; 35
+						}
+						//Write the new set temperature to the EEPROM
+						EEPROM_Write_Byte(1,data);
+ 34a:	60 2f       	mov	r22, r16
+ 34c:	81 e0       	ldi	r24, 0x01	; 1
+ 34e:	90 e0       	ldi	r25, 0x00	; 0
+ 350:	0e 94 ff 03 	call	0x7fe	; 0x7fe <EEPROM_Write_Byte>
+						Mode_Counter=0;
+ 354:	12 2d       	mov	r17, r2
+ 356:	01 c0       	rjmp	.+2      	; 0x35a <main+0x2de>
+						{
+							data=75;
+						}
+						//Write the new set temperature to the EEPROM
+						EEPROM_Write_Byte(1,data);
+						Mode_Counter=0;
+ 358:	12 2d       	mov	r17, r2
+ 35a:	8f ef       	ldi	r24, 0xFF	; 255
+ 35c:	e8 1a       	sub	r14, r24
+ 35e:	f8 0a       	sbc	r15, r24
+		//Temperature selection mode
+		else if (flag_mode==2)
+		{
+			while(Mode_Counter<5 && flag_mode==2)
+			{
+				while(i<10)
+ 360:	9a e0       	ldi	r25, 0x0A	; 10
+ 362:	e9 16       	cp	r14, r25
+ 364:	f1 04       	cpc	r15, r1
+ 366:	09 f0       	breq	.+2      	; 0x36a <main+0x2ee>
+ 368:	b5 cf       	rjmp	.-150    	; 0x2d4 <main+0x258>
+ 36a:	ab 2c       	mov	r10, r11
+ 36c:	7d c0       	rjmp	.+250    	; 0x468 <__LOCK_REGION_LENGTH__+0x68>
+					break;
+				}
+				while(j<10)
+				{
+					//The OFF part of the blinking
+					SEVENSEGMENT_Disable();
+ 36e:	0e 94 72 02 	call	0x4e4	; 0x4e4 <SEVENSEGMENT_Disable>
+ 372:	2f ef       	ldi	r18, 0xFF	; 255
+ 374:	81 ee       	ldi	r24, 0xE1	; 225
+ 376:	94 e0       	ldi	r25, 0x04	; 4
+ 378:	21 50       	subi	r18, 0x01	; 1
+ 37a:	80 40       	sbci	r24, 0x00	; 0
+ 37c:	90 40       	sbci	r25, 0x00	; 0
+ 37e:	e1 f7       	brne	.-8      	; 0x378 <main+0x2fc>
+ 380:	00 c0       	rjmp	.+0      	; 0x382 <main+0x306>
+ 382:	00 00       	nop
+					_delay_ms(100);
+					j++;
+					//If ON/OFF is pressed, go to OFF mode
+					buttonState0=BTN0_Read();
+ 384:	0e 94 46 02 	call	0x48c	; 0x48c <BTN0_Read>
+					if (buttonState0==BTN0_PRESSED)
+ 388:	81 30       	cpi	r24, 0x01	; 1
+ 38a:	39 f4       	brne	.+14     	; 0x39a <main+0x31e>
+ 38c:	30 2e       	mov	r3, r16
+					{
+						while(buttonState0==BTN0_PRESSED)
+						{
+							buttonState0=BTN0_Read();
+ 38e:	0e 94 46 02 	call	0x48c	; 0x48c <BTN0_Read>
+					j++;
+					//If ON/OFF is pressed, go to OFF mode
+					buttonState0=BTN0_Read();
+					if (buttonState0==BTN0_PRESSED)
+					{
+						while(buttonState0==BTN0_PRESSED)
+ 392:	81 30       	cpi	r24, 0x01	; 1
+ 394:	e1 f3       	breq	.-8      	; 0x38e <main+0x312>
+						{
+							buttonState0=BTN0_Read();
+						}
+						flag_mode=0;
+ 396:	00 e0       	ldi	r16, 0x00	; 0
+ 398:	41 c0       	rjmp	.+130    	; 0x41c <__LOCK_REGION_LENGTH__+0x1c>
+						break;
+					}
+					//If UP button is pressed
+					buttonState1=BTN1_Read();
+ 39a:	0e 94 51 02 	call	0x4a2	; 0x4a2 <BTN1_Read>
+					if (buttonState1==BTN1_PRESSED)
+ 39e:	81 30       	cpi	r24, 0x01	; 1
+ 3a0:	09 f0       	breq	.+2      	; 0x3a4 <main+0x328>
+ 3a2:	68 c0       	rjmp	.+208    	; 0x474 <__LOCK_REGION_LENGTH__+0x74>
+					{
+						while(buttonState1==BTN1_PRESSED)
+						{
+							buttonState1=BTN1_Read();
+ 3a4:	0e 94 51 02 	call	0x4a2	; 0x4a2 <BTN1_Read>
+					}
+					//If UP button is pressed
+					buttonState1=BTN1_Read();
+					if (buttonState1==BTN1_PRESSED)
+					{
+						while(buttonState1==BTN1_PRESSED)
+ 3a8:	81 30       	cpi	r24, 0x01	; 1
+ 3aa:	e1 f3       	breq	.-8      	; 0x3a4 <main+0x328>
+						{
+							buttonState1=BTN1_Read();
+						}
+						//Increase the set temperature by 5, up until 75
+						data=data+5;
+ 3ac:	0b 5f       	subi	r16, 0xFB	; 251
+ 3ae:	0c 34       	cpi	r16, 0x4C	; 76
+ 3b0:	08 f0       	brcs	.+2      	; 0x3b4 <main+0x338>
+ 3b2:	0b e4       	ldi	r16, 0x4B	; 75
+						if (data>75)
+						{
+							data=75;
+						}
+						//Write the new set temperature to the EEPROM
+						EEPROM_Write_Byte(1,data);
+ 3b4:	60 2f       	mov	r22, r16
+ 3b6:	81 e0       	ldi	r24, 0x01	; 1
+ 3b8:	90 e0       	ldi	r25, 0x00	; 0
+ 3ba:	0e 94 ff 03 	call	0x7fe	; 0x7fe <EEPROM_Write_Byte>
+						Mode_Counter=0;
+					}
+					//If Down button is pressed
+					buttonState2=BTN2_Read();
+ 3be:	0e 94 5c 02 	call	0x4b8	; 0x4b8 <BTN2_Read>
+					if (buttonState2==BTN2_PRESSED)
+ 3c2:	81 30       	cpi	r24, 0x01	; 1
+ 3c4:	79 f4       	brne	.+30     	; 0x3e4 <main+0x368>
+					{
+						while(buttonState2==BTN2_PRESSED)
+						{
+							buttonState2=BTN2_Read();
+ 3c6:	0e 94 5c 02 	call	0x4b8	; 0x4b8 <BTN2_Read>
+					}
+					//If Down button is pressed
+					buttonState2=BTN2_Read();
+					if (buttonState2==BTN2_PRESSED)
+					{
+						while(buttonState2==BTN2_PRESSED)
+ 3ca:	81 30       	cpi	r24, 0x01	; 1
+ 3cc:	e1 f3       	breq	.-8      	; 0x3c6 <main+0x34a>
+						{
+							buttonState2=BTN2_Read();
+						}
+						//Reduce the set temperature by 5, down until 35
+						data=data-5;
+ 3ce:	05 50       	subi	r16, 0x05	; 5
+						if (data<35)
+ 3d0:	03 32       	cpi	r16, 0x23	; 35
+ 3d2:	08 f4       	brcc	.+2      	; 0x3d6 <main+0x35a>
+						{
+							data=35;
+ 3d4:	03 e2       	ldi	r16, 0x23	; 35
+						}
+						//Write the new set temperature to the EEPROM
+						EEPROM_Write_Byte(1,data);
+ 3d6:	60 2f       	mov	r22, r16
+ 3d8:	81 e0       	ldi	r24, 0x01	; 1
+ 3da:	90 e0       	ldi	r25, 0x00	; 0
+ 3dc:	0e 94 ff 03 	call	0x7fe	; 0x7fe <EEPROM_Write_Byte>
+						Mode_Counter=0;
+ 3e0:	12 2d       	mov	r17, r2
+ 3e2:	01 c0       	rjmp	.+2      	; 0x3e6 <main+0x36a>
+						{
+							data=75;
+						}
+						//Write the new set temperature to the EEPROM
+						EEPROM_Write_Byte(1,data);
+						Mode_Counter=0;
+ 3e4:	12 2d       	mov	r17, r2
+ 3e6:	2f ef       	ldi	r18, 0xFF	; 255
+ 3e8:	e2 1a       	sub	r14, r18
+ 3ea:	f2 0a       	sbc	r15, r18
+				if (Mode_Counter>=5)
+				{
+					flag_mode=1;
+					break;
+				}
+				while(j<10)
+ 3ec:	8a e0       	ldi	r24, 0x0A	; 10
+ 3ee:	e8 16       	cp	r14, r24
+ 3f0:	f1 04       	cpc	r15, r1
+ 3f2:	09 f0       	breq	.+2      	; 0x3f6 <main+0x37a>
+ 3f4:	bc cf       	rjmp	.-136    	; 0x36e <main+0x2f2>
+						EEPROM_Write_Byte(1,data);
+						Mode_Counter=0;
+					}
+				}
+				j=0;
+				Mode_Counter++;
+ 3f6:	1f 5f       	subi	r17, 0xFF	; 255
+			}
+		}
+		//Temperature selection mode
+		else if (flag_mode==2)
+		{
+			while(Mode_Counter<5 && flag_mode==2)
+ 3f8:	15 30       	cpi	r17, 0x05	; 5
+ 3fa:	70 f4       	brcc	.+28     	; 0x418 <__LOCK_REGION_LENGTH__+0x18>
+ 3fc:	92 e0       	ldi	r25, 0x02	; 2
+ 3fe:	a9 16       	cp	r10, r25
+ 400:	29 f0       	breq	.+10     	; 0x40c <__LOCK_REGION_LENGTH__+0xc>
+ 402:	30 2e       	mov	r3, r16
+ 404:	0a 2d       	mov	r16, r10
+ 406:	0a c0       	rjmp	.+20     	; 0x41c <__LOCK_REGION_LENGTH__+0x1c>
+ 408:	10 e0       	ldi	r17, 0x00	; 0
+ 40a:	b0 2e       	mov	r11, r16
+					}
+				}
+				_delay_ms(100);
+				//If ON/OFF button is pressed, turn all display OFF (go to OFF mode)
+				buttonState0=BTN0_Read();
+				if (buttonState0==BTN0_PRESSED)
+ 40c:	e1 2c       	mov	r14, r1
+ 40e:	f1 2c       	mov	r15, r1
+ 410:	61 cf       	rjmp	.-318    	; 0x2d4 <main+0x258>
+ 412:	30 2e       	mov	r3, r16
+				}
+				i=0;
+				Mode_Counter++;
+				if (Mode_Counter>=5)
+				{
+					flag_mode=1;
+ 414:	01 e0       	ldi	r16, 0x01	; 1
+ 416:	02 c0       	rjmp	.+4      	; 0x41c <__LOCK_REGION_LENGTH__+0x1c>
+ 418:	30 2e       	mov	r3, r16
+ 41a:	0a 2d       	mov	r16, r10
+				}
+				j=0;
+				Mode_Counter++;
+			}
+			//If ON/OFF is pressed, go to Off Mode
+			if (flag_mode==0)
+ 41c:	81 e0       	ldi	r24, 0x01	; 1
+ 41e:	01 11       	cpse	r16, r1
+ 420:	01 c0       	rjmp	.+2      	; 0x424 <__LOCK_REGION_LENGTH__+0x24>
+ 422:	80 e0       	ldi	r24, 0x00	; 0
+			{
+				while(buttonState0==BTN0_PRESSED)
+				{
+					buttonState0=BTN0_Read();
+				}
+				flag_mode=1;
+ 424:	08 2f       	mov	r16, r24
+ 426:	62 ce       	rjmp	.-828    	; 0xec <main+0x70>
+				if (k==9)
+				{
+					flag_sum=1;
+					k=0;
+				}
+				if (flag_sum==1)
+ 428:	2d a5       	ldd	r18, Y+45	; 0x2d
+ 42a:	21 30       	cpi	r18, 0x01	; 1
+ 42c:	09 f0       	breq	.+2      	; 0x430 <__LOCK_REGION_LENGTH__+0x30>
+ 42e:	04 cf       	rjmp	.-504    	; 0x238 <main+0x1bc>
+ 430:	ca ce       	rjmp	.-620    	; 0x1c6 <main+0x14a>
+					//If the actual temperature is less than the set temperature
+					if (Remainder>=5)
+					{
+						//Turn ON the heating element and turn OFF the cooling element
+						LED0_ON();
+						LED1_OFF();
+ 432:	8a a9       	ldd	r24, Y+50	; 0x32
+ 434:	8b a7       	std	Y+43, r24	; 0x2b
+ 436:	91 e0       	ldi	r25, 0x01	; 1
+ 438:	9d a7       	std	Y+45, r25	; 0x2d
+ 43a:	11 cf       	rjmp	.-478    	; 0x25e <main+0x1e2>
+ 43c:	2f ef       	ldi	r18, 0xFF	; 255
+ 43e:	81 ee       	ldi	r24, 0xE1	; 225
+ 440:	94 e0       	ldi	r25, 0x04	; 4
+ 442:	21 50       	subi	r18, 0x01	; 1
+ 444:	80 40       	sbci	r24, 0x00	; 0
+ 446:	90 40       	sbci	r25, 0x00	; 0
+ 448:	e1 f7       	brne	.-8      	; 0x442 <__LOCK_REGION_LENGTH__+0x42>
+ 44a:	00 c0       	rjmp	.+0      	; 0x44c <__LOCK_REGION_LENGTH__+0x4c>
+ 44c:	00 00       	nop
+						LED2_OFF();
+					}
+				}
+				_delay_ms(100);
+				//If ON/OFF button is pressed, turn all display OFF (go to OFF mode)
+				buttonState0=BTN0_Read();
+ 44e:	0e 94 46 02 	call	0x48c	; 0x48c <BTN0_Read>
+				if (buttonState0==BTN0_PRESSED)
+ 452:	81 30       	cpi	r24, 0x01	; 1
+ 454:	09 f4       	brne	.+2      	; 0x458 <__LOCK_REGION_LENGTH__+0x58>
+ 456:	10 cf       	rjmp	.-480    	; 0x278 <main+0x1fc>
+ 458:	0c a5       	ldd	r16, Y+44	; 0x2c
+ 45a:	15 cf       	rjmp	.-470    	; 0x286 <main+0x20a>
+						//Write the new set temperature to the EEPROM
+						EEPROM_Write_Byte(1,data);
+						Mode_Counter=0;
+					}
+					//If Down button is pressed
+					buttonState2=BTN2_Read();
+ 45c:	0e 94 5c 02 	call	0x4b8	; 0x4b8 <BTN2_Read>
+					if (buttonState2==BTN2_PRESSED)
+ 460:	81 30       	cpi	r24, 0x01	; 1
+ 462:	09 f0       	breq	.+2      	; 0x466 <__LOCK_REGION_LENGTH__+0x66>
+ 464:	7a cf       	rjmp	.-268    	; 0x35a <main+0x2de>
+ 466:	69 cf       	rjmp	.-302    	; 0x33a <main+0x2be>
+						EEPROM_Write_Byte(1,data);
+						Mode_Counter=0;
+					}
+				}
+				i=0;
+				Mode_Counter++;
+ 468:	1f 5f       	subi	r17, 0xFF	; 255
+				if (Mode_Counter>=5)
+ 46a:	15 30       	cpi	r17, 0x05	; 5
+ 46c:	90 f6       	brcc	.-92     	; 0x412 <__LOCK_REGION_LENGTH__+0x12>
+ 46e:	e1 2c       	mov	r14, r1
+ 470:	f1 2c       	mov	r15, r1
+ 472:	7d cf       	rjmp	.-262    	; 0x36e <main+0x2f2>
+						//Write the new set temperature to the EEPROM
+						EEPROM_Write_Byte(1,data);
+						Mode_Counter=0;
+					}
+					//If Down button is pressed
+					buttonState2=BTN2_Read();
+ 474:	0e 94 5c 02 	call	0x4b8	; 0x4b8 <BTN2_Read>
+					if (buttonState2==BTN2_PRESSED)
+ 478:	81 30       	cpi	r24, 0x01	; 1
+ 47a:	09 f0       	breq	.+2      	; 0x47e <__LOCK_REGION_LENGTH__+0x7e>
+ 47c:	b4 cf       	rjmp	.-152    	; 0x3e6 <main+0x36a>
+ 47e:	a3 cf       	rjmp	.-186    	; 0x3c6 <main+0x34a>
+
+00000480 <BTN0_Initialize>:
+
+#include "BTN0_Interface.h"
+
+void BTN0_Initialize(void)
+{
+	DIO_SetPinDirection(BTN0_PORT, BTN0_PIN, BTN0_INPUT);
+ 480:	40 e0       	ldi	r20, 0x00	; 0
+ 482:	60 e0       	ldi	r22, 0x00	; 0
+ 484:	81 e0       	ldi	r24, 0x01	; 1
+ 486:	0e 94 ef 02 	call	0x5de	; 0x5de <DIO_SetPinDirection>
+ 48a:	08 95       	ret
+
+0000048c <BTN0_Read>:
+}
+btn0_state BTN0_Read(void)
+{
+	uint8_t btnValue = BTN0_NPRESSED;
+	btnValue = DIO_GetPinValue(BTN0_PORT, BTN0_PIN);
+ 48c:	60 e0       	ldi	r22, 0x00	; 0
+ 48e:	81 e0       	ldi	r24, 0x01	; 1
+ 490:	0e 94 d1 03 	call	0x7a2	; 0x7a2 <DIO_GetPinValue>
+	return btnValue;
+ 494:	08 95       	ret
+
+00000496 <BTN1_Initialize>:
+
+#include "BTN1_Interface.h"
+
+void BTN1_Initialize(void)
+{
+	DIO_SetPinDirection(BTN1_PORT, BTN1_PIN, BTN1_INPUT);
+ 496:	40 e0       	ldi	r20, 0x00	; 0
+ 498:	66 e0       	ldi	r22, 0x06	; 6
+ 49a:	83 e0       	ldi	r24, 0x03	; 3
+ 49c:	0e 94 ef 02 	call	0x5de	; 0x5de <DIO_SetPinDirection>
+ 4a0:	08 95       	ret
+
+000004a2 <BTN1_Read>:
+}
+btn1_state BTN1_Read(void)
+{
+	uint8_t btnValue = BTN1_NPRESSED;
+	btnValue = DIO_GetPinValue(BTN1_PORT, BTN1_PIN);
+ 4a2:	66 e0       	ldi	r22, 0x06	; 6
+ 4a4:	83 e0       	ldi	r24, 0x03	; 3
+ 4a6:	0e 94 d1 03 	call	0x7a2	; 0x7a2 <DIO_GetPinValue>
+	return btnValue;
+ 4aa:	08 95       	ret
+
+000004ac <BTN2_Initialize>:
+
+#include "BTN2_Interface.h"
+
+void BTN2_Initialize(void)
+{
+	DIO_SetPinDirection(BTN2_PORT, BTN2_PIN, BTN2_INPUT);
+ 4ac:	40 e0       	ldi	r20, 0x00	; 0
+ 4ae:	62 e0       	ldi	r22, 0x02	; 2
+ 4b0:	83 e0       	ldi	r24, 0x03	; 3
+ 4b2:	0e 94 ef 02 	call	0x5de	; 0x5de <DIO_SetPinDirection>
+ 4b6:	08 95       	ret
+
+000004b8 <BTN2_Read>:
+}
+btn2_state BTN2_Read(void)
+{
+	uint8_t btnValue = BTN2_NPRESSED;
+	btnValue = DIO_GetPinValue(BTN2_PORT, BTN2_PIN);
+ 4b8:	62 e0       	ldi	r22, 0x02	; 2
+ 4ba:	83 e0       	ldi	r24, 0x03	; 3
+ 4bc:	0e 94 d1 03 	call	0x7a2	; 0x7a2 <DIO_GetPinValue>
+	return btnValue;
+ 4c0:	08 95       	ret
+
+000004c2 <SEVENSEGMENT_Initialize>:
+{
+	DIO_SetPinValue(SEVSEG_CONTROL_PORT, SEVSEG_PIN_DIP, SEVSEG_HIGH);
+}
+void SEVENSEGMENT_Disable_DecimalPoint(void)
+{
+	DIO_SetPinValue(SEVSEG_CONTROL_PORT, SEVSEG_PIN_DIP, SEVSEG_LOW);
+ 4c2:	82 b3       	in	r24, 0x12	; 18
+ 4c4:	41 e0       	ldi	r20, 0x01	; 1
+ 4c6:	61 e0       	ldi	r22, 0x01	; 1
+ 4c8:	0e 94 ef 02 	call	0x5de	; 0x5de <DIO_SetPinDirection>
+ 4cc:	82 b3       	in	r24, 0x12	; 18
+ 4ce:	41 e0       	ldi	r20, 0x01	; 1
+ 4d0:	63 e0       	ldi	r22, 0x03	; 3
+ 4d2:	0e 94 ef 02 	call	0x5de	; 0x5de <DIO_SetPinDirection>
+ 4d6:	08 95       	ret
+
+000004d8 <SEVENSEGMENT_Enable>:
+ 4d8:	41 e0       	ldi	r20, 0x01	; 1
+ 4da:	61 e0       	ldi	r22, 0x01	; 1
+ 4dc:	83 e0       	ldi	r24, 0x03	; 3
+ 4de:	0e 94 60 03 	call	0x6c0	; 0x6c0 <DIO_SetPinValue>
+ 4e2:	08 95       	ret
+
+000004e4 <SEVENSEGMENT_Disable>:
+ 4e4:	40 e0       	ldi	r20, 0x00	; 0
+ 4e6:	61 e0       	ldi	r22, 0x01	; 1
+ 4e8:	83 e0       	ldi	r24, 0x03	; 3
+ 4ea:	0e 94 60 03 	call	0x6c0	; 0x6c0 <DIO_SetPinValue>
+ 4ee:	08 95       	ret
+
+000004f0 <SEVENSEGMENT_DisplayNumber>:
+}
+
+void SEVENSEGMENT_DisplayNumber(uint8_t number)
+{
+	uint8_t units = number % 10;
+	uint8_t tens = number / 10;
+ 4f0:	9d ec       	ldi	r25, 0xCD	; 205
+ 4f2:	89 9f       	mul	r24, r25
+ 4f4:	91 2d       	mov	r25, r1
+ 4f6:	11 24       	eor	r1, r1
+ 4f8:	96 95       	lsr	r25
+ 4fa:	96 95       	lsr	r25
+ 4fc:	96 95       	lsr	r25
+	DIO_SetPinValue(SEVSEG_CONTROL_PORT, SEVSEG_PIN_DIP, SEVSEG_LOW);
+}
+
+void SEVENSEGMENT_DisplayNumber(uint8_t number)
+{
+	uint8_t units = number % 10;
+ 4fe:	39 2f       	mov	r19, r25
+ 500:	33 0f       	add	r19, r19
+ 502:	23 2f       	mov	r18, r19
+ 504:	22 0f       	add	r18, r18
+ 506:	22 0f       	add	r18, r18
+ 508:	23 0f       	add	r18, r19
+ 50a:	82 1b       	sub	r24, r18
+	uint8_t tens = number / 10;
+	SEVSEG_PORT = units<<4;
+ 50c:	82 95       	swap	r24
+ 50e:	80 7f       	andi	r24, 0xF0	; 240
+ 510:	88 bb       	out	0x18, r24	; 24
+	SEVSEG_DATA_PORT=tens;
+ 512:	9b bb       	out	0x1b, r25	; 27
+ 514:	08 95       	ret
+
+00000516 <LED0_Initialization>:
+
+#include "LED0_Interface.h"
+
+void LED0_Initialization(void)
+{
+	DIO_SetPinDirection(LED0_PORT, LED0_PIN, LED0_OUTPUT);
+ 516:	41 e0       	ldi	r20, 0x01	; 1
+ 518:	62 e0       	ldi	r22, 0x02	; 2
+ 51a:	82 e0       	ldi	r24, 0x02	; 2
+ 51c:	0e 94 ef 02 	call	0x5de	; 0x5de <DIO_SetPinDirection>
+ 520:	08 95       	ret
+
+00000522 <LED0_ON>:
+}
+void LED0_ON (void)
+{
+	DIO_SetPinValue(LED0_PORT, LED0_PIN, LED0_HIGH);
+ 522:	41 e0       	ldi	r20, 0x01	; 1
+ 524:	62 e0       	ldi	r22, 0x02	; 2
+ 526:	82 e0       	ldi	r24, 0x02	; 2
+ 528:	0e 94 60 03 	call	0x6c0	; 0x6c0 <DIO_SetPinValue>
+ 52c:	08 95       	ret
+
+0000052e <LED0_OFF>:
+}
+void LED0_OFF(void)
+{
+	DIO_SetPinValue(LED0_PORT, LED0_PIN, LED0_LOW);
+ 52e:	40 e0       	ldi	r20, 0x00	; 0
+ 530:	62 e0       	ldi	r22, 0x02	; 2
+ 532:	82 e0       	ldi	r24, 0x02	; 2
+ 534:	0e 94 60 03 	call	0x6c0	; 0x6c0 <DIO_SetPinValue>
+ 538:	08 95       	ret
+
+0000053a <LED1_Initialization>:
+
+#include "LED1_Interface.h"
+
+void LED1_Initialization(void)
+{
+	DIO_SetPinDirection(LED1_PORT, LED1_PIN, LED1_OUTPUT);
+ 53a:	41 e0       	ldi	r20, 0x01	; 1
+ 53c:	67 e0       	ldi	r22, 0x07	; 7
+ 53e:	82 e0       	ldi	r24, 0x02	; 2
+ 540:	0e 94 ef 02 	call	0x5de	; 0x5de <DIO_SetPinDirection>
+ 544:	08 95       	ret
+
+00000546 <LED1_ON>:
+}
+void LED1_ON (void)
+{
+	DIO_SetPinValue(LED1_PORT, LED1_PIN, LED1_HIGH);
+ 546:	41 e0       	ldi	r20, 0x01	; 1
+ 548:	67 e0       	ldi	r22, 0x07	; 7
+ 54a:	82 e0       	ldi	r24, 0x02	; 2
+ 54c:	0e 94 60 03 	call	0x6c0	; 0x6c0 <DIO_SetPinValue>
+ 550:	08 95       	ret
+
+00000552 <LED1_OFF>:
+}
+void LED1_OFF(void)
+{
+	DIO_SetPinValue(LED1_PORT, LED1_PIN, LED1_LOW);
+ 552:	40 e0       	ldi	r20, 0x00	; 0
+ 554:	67 e0       	ldi	r22, 0x07	; 7
+ 556:	82 e0       	ldi	r24, 0x02	; 2
+ 558:	0e 94 60 03 	call	0x6c0	; 0x6c0 <DIO_SetPinValue>
+ 55c:	08 95       	ret
+
+0000055e <LED2_Initialization>:
+
+#include "LED2_Interface.h"
+
+void LED2_Initialization(void)
+{
+	DIO_SetPinDirection(LED2_PORT, LED2_PIN, LED2_OUTPUT);
+ 55e:	41 e0       	ldi	r20, 0x01	; 1
+ 560:	63 e0       	ldi	r22, 0x03	; 3
+ 562:	83 e0       	ldi	r24, 0x03	; 3
+ 564:	0e 94 ef 02 	call	0x5de	; 0x5de <DIO_SetPinDirection>
+ 568:	08 95       	ret
+
+0000056a <LED2_ON>:
+}
+void LED2_ON (void)
+{
+	DIO_SetPinValue(LED2_PORT, LED2_PIN, LED2_HIGH);
+ 56a:	41 e0       	ldi	r20, 0x01	; 1
+ 56c:	63 e0       	ldi	r22, 0x03	; 3
+ 56e:	83 e0       	ldi	r24, 0x03	; 3
+ 570:	0e 94 60 03 	call	0x6c0	; 0x6c0 <DIO_SetPinValue>
+ 574:	08 95       	ret
+
+00000576 <LED2_OFF>:
+}
+void LED2_OFF(void)
+{
+	DIO_SetPinValue(LED2_PORT, LED2_PIN, LED2_LOW);
+ 576:	40 e0       	ldi	r20, 0x00	; 0
+ 578:	63 e0       	ldi	r22, 0x03	; 3
+ 57a:	83 e0       	ldi	r24, 0x03	; 3
+ 57c:	0e 94 60 03 	call	0x6c0	; 0x6c0 <DIO_SetPinValue>
+ 580:	08 95       	ret
+
+00000582 <ADC_Initialize_WithoutInterrupt>:
+	2- select prescalar
+	3- Auto-Trigger
+	4- Right adjust
+	5- Disable peripheral interrupt
+	*/
+	_ADC_ADMUX = 0x40;  //0b 0100 0000
+ 582:	80 e4       	ldi	r24, 0x40	; 64
+ 584:	87 b9       	out	0x07, r24	; 7
+	_ADC_ADCSRA = 0xA7;// 0b 1010 0111
+ 586:	87 ea       	ldi	r24, 0xA7	; 167
+ 588:	86 b9       	out	0x06, r24	; 6
+ 58a:	08 95       	ret
+
+0000058c <ADC_Read>:
+	4- Wait until end conversion
+	5- Return reading
+	*/
+	uint16_t adcRead = 0;
+	
+	switch (channel)
+ 58c:	90 e0       	ldi	r25, 0x00	; 0
+ 58e:	88 30       	cpi	r24, 0x08	; 8
+ 590:	91 05       	cpc	r25, r1
+ 592:	e8 f4       	brcc	.+58     	; 0x5ce <ADC_Read+0x42>
+ 594:	fc 01       	movw	r30, r24
+ 596:	e6 5d       	subi	r30, 0xD6	; 214
+ 598:	ff 4f       	sbci	r31, 0xFF	; 255
+ 59a:	0c 94 3a 04 	jmp	0x874	; 0x874 <__tablejump2__>
+	{
+		case ADC_channel_0:
+		_ADC_ADMUX = 0x40;//0b 010 00000
+ 59e:	80 e4       	ldi	r24, 0x40	; 64
+ 5a0:	87 b9       	out	0x07, r24	; 7
+		break;
+ 5a2:	17 c0       	rjmp	.+46     	; 0x5d2 <ADC_Read+0x46>
+		case ADC_channel_1:
+		_ADC_ADMUX = 0x41;//0b 010 00001
+ 5a4:	81 e4       	ldi	r24, 0x41	; 65
+ 5a6:	87 b9       	out	0x07, r24	; 7
+		break;
+ 5a8:	14 c0       	rjmp	.+40     	; 0x5d2 <ADC_Read+0x46>
+		case ADC_channel_2:
+		_ADC_ADMUX = 0x42;//0b 010 00010
+ 5aa:	82 e4       	ldi	r24, 0x42	; 66
+ 5ac:	87 b9       	out	0x07, r24	; 7
+		break;
+ 5ae:	11 c0       	rjmp	.+34     	; 0x5d2 <ADC_Read+0x46>
+		case ADC_channel_3:
+		_ADC_ADMUX = 0x43;//0b 010 00011
+ 5b0:	83 e4       	ldi	r24, 0x43	; 67
+ 5b2:	87 b9       	out	0x07, r24	; 7
+		break;
+ 5b4:	0e c0       	rjmp	.+28     	; 0x5d2 <ADC_Read+0x46>
+		case ADC_channel_4:
+		_ADC_ADMUX = 0x44;//0b 010 00100
+ 5b6:	84 e4       	ldi	r24, 0x44	; 68
+ 5b8:	87 b9       	out	0x07, r24	; 7
+		break;
+ 5ba:	0b c0       	rjmp	.+22     	; 0x5d2 <ADC_Read+0x46>
+		case ADC_channel_5:
+		_ADC_ADMUX = 0x45;//0b 010 00101
+ 5bc:	85 e4       	ldi	r24, 0x45	; 69
+ 5be:	87 b9       	out	0x07, r24	; 7
+		break;
+ 5c0:	08 c0       	rjmp	.+16     	; 0x5d2 <ADC_Read+0x46>
+		case ADC_channel_6:
+		_ADC_ADMUX = 0x46;//0b 010 00110
+ 5c2:	86 e4       	ldi	r24, 0x46	; 70
+ 5c4:	87 b9       	out	0x07, r24	; 7
+		break;
+ 5c6:	05 c0       	rjmp	.+10     	; 0x5d2 <ADC_Read+0x46>
+		case ADC_channel_7:
+		_ADC_ADMUX = 0x47;//0b 0100 0111
+ 5c8:	87 e4       	ldi	r24, 0x47	; 71
+ 5ca:	87 b9       	out	0x07, r24	; 7
+		break;
+ 5cc:	02 c0       	rjmp	.+4      	; 0x5d2 <ADC_Read+0x46>
+		default:
+		_ADC_ADMUX = 0x40;
+ 5ce:	80 e4       	ldi	r24, 0x40	; 64
+ 5d0:	87 b9       	out	0x07, r24	; 7
+		break;
+	}
+	_ADC_ADCSRA |= (1<<ADSC);
+ 5d2:	36 9a       	sbi	0x06, 6	; 6
+	while (GET_BIT(_ADC_ADCSRA, ADIF) != 1);
+ 5d4:	34 9b       	sbis	0x06, 4	; 6
+ 5d6:	fe cf       	rjmp	.-4      	; 0x5d4 <ADC_Read+0x48>
+	adcRead = _ADC_DATA;
+ 5d8:	84 b1       	in	r24, 0x04	; 4
+ 5da:	95 b1       	in	r25, 0x05	; 5
+	return adcRead;
+ 5dc:	08 95       	ret
+
+000005de <DIO_SetPinDirection>:
+	switch (port)
+	{
+		case DIO_PORTA: TGL_BIT(_DIO_PORTA, pin); break;
+		case DIO_PORTB: TGL_BIT(_DIO_PORTB, pin); break;
+		case DIO_PORTC: TGL_BIT(_DIO_PORTC, pin); break;
+		case DIO_PORTD: TGL_BIT(_DIO_PORTD, pin); break;
+ 5de:	44 23       	and	r20, r20
+ 5e0:	19 f0       	breq	.+6      	; 0x5e8 <DIO_SetPinDirection+0xa>
+ 5e2:	41 30       	cpi	r20, 0x01	; 1
+ 5e4:	c9 f1       	breq	.+114    	; 0x658 <DIO_SetPinDirection+0x7a>
+ 5e6:	08 95       	ret
+ 5e8:	81 30       	cpi	r24, 0x01	; 1
+ 5ea:	91 f0       	breq	.+36     	; 0x610 <DIO_SetPinDirection+0x32>
+ 5ec:	28 f0       	brcs	.+10     	; 0x5f8 <DIO_SetPinDirection+0x1a>
+ 5ee:	82 30       	cpi	r24, 0x02	; 2
+ 5f0:	d9 f0       	breq	.+54     	; 0x628 <DIO_SetPinDirection+0x4a>
+ 5f2:	83 30       	cpi	r24, 0x03	; 3
+ 5f4:	29 f1       	breq	.+74     	; 0x640 <DIO_SetPinDirection+0x62>
+ 5f6:	08 95       	ret
+ 5f8:	2a b3       	in	r18, 0x1a	; 26
+ 5fa:	81 e0       	ldi	r24, 0x01	; 1
+ 5fc:	90 e0       	ldi	r25, 0x00	; 0
+ 5fe:	02 c0       	rjmp	.+4      	; 0x604 <DIO_SetPinDirection+0x26>
+ 600:	88 0f       	add	r24, r24
+ 602:	99 1f       	adc	r25, r25
+ 604:	6a 95       	dec	r22
+ 606:	e2 f7       	brpl	.-8      	; 0x600 <DIO_SetPinDirection+0x22>
+ 608:	80 95       	com	r24
+ 60a:	82 23       	and	r24, r18
+ 60c:	8a bb       	out	0x1a, r24	; 26
+ 60e:	08 95       	ret
+ 610:	27 b3       	in	r18, 0x17	; 23
+ 612:	81 e0       	ldi	r24, 0x01	; 1
+ 614:	90 e0       	ldi	r25, 0x00	; 0
+ 616:	02 c0       	rjmp	.+4      	; 0x61c <DIO_SetPinDirection+0x3e>
+ 618:	88 0f       	add	r24, r24
+ 61a:	99 1f       	adc	r25, r25
+ 61c:	6a 95       	dec	r22
+ 61e:	e2 f7       	brpl	.-8      	; 0x618 <DIO_SetPinDirection+0x3a>
+ 620:	80 95       	com	r24
+ 622:	82 23       	and	r24, r18
+ 624:	87 bb       	out	0x17, r24	; 23
+ 626:	08 95       	ret
+ 628:	24 b3       	in	r18, 0x14	; 20
+ 62a:	81 e0       	ldi	r24, 0x01	; 1
+ 62c:	90 e0       	ldi	r25, 0x00	; 0
+ 62e:	02 c0       	rjmp	.+4      	; 0x634 <DIO_SetPinDirection+0x56>
+ 630:	88 0f       	add	r24, r24
+ 632:	99 1f       	adc	r25, r25
+ 634:	6a 95       	dec	r22
+ 636:	e2 f7       	brpl	.-8      	; 0x630 <DIO_SetPinDirection+0x52>
+ 638:	80 95       	com	r24
+ 63a:	82 23       	and	r24, r18
+ 63c:	84 bb       	out	0x14, r24	; 20
+ 63e:	08 95       	ret
+ 640:	21 b3       	in	r18, 0x11	; 17
+ 642:	81 e0       	ldi	r24, 0x01	; 1
+ 644:	90 e0       	ldi	r25, 0x00	; 0
+ 646:	02 c0       	rjmp	.+4      	; 0x64c <DIO_SetPinDirection+0x6e>
+ 648:	88 0f       	add	r24, r24
+ 64a:	99 1f       	adc	r25, r25
+ 64c:	6a 95       	dec	r22
+ 64e:	e2 f7       	brpl	.-8      	; 0x648 <DIO_SetPinDirection+0x6a>
+ 650:	80 95       	com	r24
+ 652:	82 23       	and	r24, r18
+ 654:	81 bb       	out	0x11, r24	; 17
+ 656:	08 95       	ret
+ 658:	81 30       	cpi	r24, 0x01	; 1
+ 65a:	89 f0       	breq	.+34     	; 0x67e <DIO_SetPinDirection+0xa0>
+ 65c:	28 f0       	brcs	.+10     	; 0x668 <DIO_SetPinDirection+0x8a>
+ 65e:	82 30       	cpi	r24, 0x02	; 2
+ 660:	c9 f0       	breq	.+50     	; 0x694 <DIO_SetPinDirection+0xb6>
+ 662:	83 30       	cpi	r24, 0x03	; 3
+ 664:	11 f1       	breq	.+68     	; 0x6aa <DIO_SetPinDirection+0xcc>
+ 666:	08 95       	ret
+ 668:	2a b3       	in	r18, 0x1a	; 26
+ 66a:	81 e0       	ldi	r24, 0x01	; 1
+ 66c:	90 e0       	ldi	r25, 0x00	; 0
+ 66e:	02 c0       	rjmp	.+4      	; 0x674 <DIO_SetPinDirection+0x96>
+ 670:	88 0f       	add	r24, r24
+ 672:	99 1f       	adc	r25, r25
+ 674:	6a 95       	dec	r22
+ 676:	e2 f7       	brpl	.-8      	; 0x670 <DIO_SetPinDirection+0x92>
+ 678:	82 2b       	or	r24, r18
+ 67a:	8a bb       	out	0x1a, r24	; 26
+ 67c:	08 95       	ret
+ 67e:	27 b3       	in	r18, 0x17	; 23
+ 680:	81 e0       	ldi	r24, 0x01	; 1
+ 682:	90 e0       	ldi	r25, 0x00	; 0
+ 684:	02 c0       	rjmp	.+4      	; 0x68a <DIO_SetPinDirection+0xac>
+ 686:	88 0f       	add	r24, r24
+ 688:	99 1f       	adc	r25, r25
+ 68a:	6a 95       	dec	r22
+ 68c:	e2 f7       	brpl	.-8      	; 0x686 <DIO_SetPinDirection+0xa8>
+ 68e:	82 2b       	or	r24, r18
+ 690:	87 bb       	out	0x17, r24	; 23
+ 692:	08 95       	ret
+ 694:	24 b3       	in	r18, 0x14	; 20
+ 696:	81 e0       	ldi	r24, 0x01	; 1
+ 698:	90 e0       	ldi	r25, 0x00	; 0
+ 69a:	02 c0       	rjmp	.+4      	; 0x6a0 <DIO_SetPinDirection+0xc2>
+ 69c:	88 0f       	add	r24, r24
+ 69e:	99 1f       	adc	r25, r25
+ 6a0:	6a 95       	dec	r22
+ 6a2:	e2 f7       	brpl	.-8      	; 0x69c <DIO_SetPinDirection+0xbe>
+ 6a4:	82 2b       	or	r24, r18
+ 6a6:	84 bb       	out	0x14, r24	; 20
+ 6a8:	08 95       	ret
+ 6aa:	21 b3       	in	r18, 0x11	; 17
+ 6ac:	81 e0       	ldi	r24, 0x01	; 1
+ 6ae:	90 e0       	ldi	r25, 0x00	; 0
+ 6b0:	02 c0       	rjmp	.+4      	; 0x6b6 <DIO_SetPinDirection+0xd8>
+ 6b2:	88 0f       	add	r24, r24
+ 6b4:	99 1f       	adc	r25, r25
+ 6b6:	6a 95       	dec	r22
+ 6b8:	e2 f7       	brpl	.-8      	; 0x6b2 <DIO_SetPinDirection+0xd4>
+ 6ba:	82 2b       	or	r24, r18
+ 6bc:	81 bb       	out	0x11, r24	; 17
+ 6be:	08 95       	ret
+
+000006c0 <DIO_SetPinValue>:
+ 6c0:	44 23       	and	r20, r20
+ 6c2:	19 f0       	breq	.+6      	; 0x6ca <DIO_SetPinValue+0xa>
+ 6c4:	41 30       	cpi	r20, 0x01	; 1
+ 6c6:	c9 f1       	breq	.+114    	; 0x73a <DIO_SetPinValue+0x7a>
+ 6c8:	08 95       	ret
+ 6ca:	81 30       	cpi	r24, 0x01	; 1
+ 6cc:	91 f0       	breq	.+36     	; 0x6f2 <DIO_SetPinValue+0x32>
+ 6ce:	28 f0       	brcs	.+10     	; 0x6da <DIO_SetPinValue+0x1a>
+ 6d0:	82 30       	cpi	r24, 0x02	; 2
+ 6d2:	d9 f0       	breq	.+54     	; 0x70a <DIO_SetPinValue+0x4a>
+ 6d4:	83 30       	cpi	r24, 0x03	; 3
+ 6d6:	29 f1       	breq	.+74     	; 0x722 <DIO_SetPinValue+0x62>
+ 6d8:	08 95       	ret
+ 6da:	2b b3       	in	r18, 0x1b	; 27
+ 6dc:	81 e0       	ldi	r24, 0x01	; 1
+ 6de:	90 e0       	ldi	r25, 0x00	; 0
+ 6e0:	02 c0       	rjmp	.+4      	; 0x6e6 <DIO_SetPinValue+0x26>
+ 6e2:	88 0f       	add	r24, r24
+ 6e4:	99 1f       	adc	r25, r25
+ 6e6:	6a 95       	dec	r22
+ 6e8:	e2 f7       	brpl	.-8      	; 0x6e2 <DIO_SetPinValue+0x22>
+ 6ea:	80 95       	com	r24
+ 6ec:	82 23       	and	r24, r18
+ 6ee:	8b bb       	out	0x1b, r24	; 27
+ 6f0:	08 95       	ret
+ 6f2:	28 b3       	in	r18, 0x18	; 24
+ 6f4:	81 e0       	ldi	r24, 0x01	; 1
+ 6f6:	90 e0       	ldi	r25, 0x00	; 0
+ 6f8:	02 c0       	rjmp	.+4      	; 0x6fe <DIO_SetPinValue+0x3e>
+ 6fa:	88 0f       	add	r24, r24
+ 6fc:	99 1f       	adc	r25, r25
+ 6fe:	6a 95       	dec	r22
+ 700:	e2 f7       	brpl	.-8      	; 0x6fa <DIO_SetPinValue+0x3a>
+ 702:	80 95       	com	r24
+ 704:	82 23       	and	r24, r18
+ 706:	88 bb       	out	0x18, r24	; 24
+ 708:	08 95       	ret
+ 70a:	25 b3       	in	r18, 0x15	; 21
+ 70c:	81 e0       	ldi	r24, 0x01	; 1
+ 70e:	90 e0       	ldi	r25, 0x00	; 0
+ 710:	02 c0       	rjmp	.+4      	; 0x716 <DIO_SetPinValue+0x56>
+ 712:	88 0f       	add	r24, r24
+ 714:	99 1f       	adc	r25, r25
+ 716:	6a 95       	dec	r22
+ 718:	e2 f7       	brpl	.-8      	; 0x712 <DIO_SetPinValue+0x52>
+ 71a:	80 95       	com	r24
+ 71c:	82 23       	and	r24, r18
+ 71e:	85 bb       	out	0x15, r24	; 21
+ 720:	08 95       	ret
+ 722:	22 b3       	in	r18, 0x12	; 18
+ 724:	81 e0       	ldi	r24, 0x01	; 1
+ 726:	90 e0       	ldi	r25, 0x00	; 0
+ 728:	02 c0       	rjmp	.+4      	; 0x72e <DIO_SetPinValue+0x6e>
+ 72a:	88 0f       	add	r24, r24
+ 72c:	99 1f       	adc	r25, r25
+ 72e:	6a 95       	dec	r22
+ 730:	e2 f7       	brpl	.-8      	; 0x72a <DIO_SetPinValue+0x6a>
+ 732:	80 95       	com	r24
+ 734:	82 23       	and	r24, r18
+ 736:	82 bb       	out	0x12, r24	; 18
+ 738:	08 95       	ret
+ 73a:	81 30       	cpi	r24, 0x01	; 1
+ 73c:	89 f0       	breq	.+34     	; 0x760 <DIO_SetPinValue+0xa0>
+ 73e:	28 f0       	brcs	.+10     	; 0x74a <DIO_SetPinValue+0x8a>
+ 740:	82 30       	cpi	r24, 0x02	; 2
+ 742:	c9 f0       	breq	.+50     	; 0x776 <DIO_SetPinValue+0xb6>
+ 744:	83 30       	cpi	r24, 0x03	; 3
+ 746:	11 f1       	breq	.+68     	; 0x78c <DIO_SetPinValue+0xcc>
+ 748:	08 95       	ret
+ 74a:	2b b3       	in	r18, 0x1b	; 27
+ 74c:	81 e0       	ldi	r24, 0x01	; 1
+ 74e:	90 e0       	ldi	r25, 0x00	; 0
+ 750:	02 c0       	rjmp	.+4      	; 0x756 <DIO_SetPinValue+0x96>
+ 752:	88 0f       	add	r24, r24
+ 754:	99 1f       	adc	r25, r25
+ 756:	6a 95       	dec	r22
+ 758:	e2 f7       	brpl	.-8      	; 0x752 <DIO_SetPinValue+0x92>
+ 75a:	82 2b       	or	r24, r18
+ 75c:	8b bb       	out	0x1b, r24	; 27
+ 75e:	08 95       	ret
+ 760:	28 b3       	in	r18, 0x18	; 24
+ 762:	81 e0       	ldi	r24, 0x01	; 1
+ 764:	90 e0       	ldi	r25, 0x00	; 0
+ 766:	02 c0       	rjmp	.+4      	; 0x76c <DIO_SetPinValue+0xac>
+ 768:	88 0f       	add	r24, r24
+ 76a:	99 1f       	adc	r25, r25
+ 76c:	6a 95       	dec	r22
+ 76e:	e2 f7       	brpl	.-8      	; 0x768 <DIO_SetPinValue+0xa8>
+ 770:	82 2b       	or	r24, r18
+ 772:	88 bb       	out	0x18, r24	; 24
+ 774:	08 95       	ret
+ 776:	25 b3       	in	r18, 0x15	; 21
+ 778:	81 e0       	ldi	r24, 0x01	; 1
+ 77a:	90 e0       	ldi	r25, 0x00	; 0
+ 77c:	02 c0       	rjmp	.+4      	; 0x782 <DIO_SetPinValue+0xc2>
+ 77e:	88 0f       	add	r24, r24
+ 780:	99 1f       	adc	r25, r25
+ 782:	6a 95       	dec	r22
+ 784:	e2 f7       	brpl	.-8      	; 0x77e <DIO_SetPinValue+0xbe>
+ 786:	82 2b       	or	r24, r18
+ 788:	85 bb       	out	0x15, r24	; 21
+ 78a:	08 95       	ret
+ 78c:	22 b3       	in	r18, 0x12	; 18
+ 78e:	81 e0       	ldi	r24, 0x01	; 1
+ 790:	90 e0       	ldi	r25, 0x00	; 0
+ 792:	02 c0       	rjmp	.+4      	; 0x798 <DIO_SetPinValue+0xd8>
+ 794:	88 0f       	add	r24, r24
+ 796:	99 1f       	adc	r25, r25
+ 798:	6a 95       	dec	r22
+ 79a:	e2 f7       	brpl	.-8      	; 0x794 <DIO_SetPinValue+0xd4>
+ 79c:	82 2b       	or	r24, r18
+ 79e:	82 bb       	out	0x12, r24	; 18
+ 7a0:	08 95       	ret
+
+000007a2 <DIO_GetPinValue>:
+}
+
+uint8_t DIO_GetPinValue(dioPort port, dioPin pin)
+{
+	uint8_t dioRead = 0;
+	switch (port)
+ 7a2:	81 30       	cpi	r24, 0x01	; 1
+ 7a4:	79 f0       	breq	.+30     	; 0x7c4 <DIO_GetPinValue+0x22>
+ 7a6:	28 f0       	brcs	.+10     	; 0x7b2 <DIO_GetPinValue+0x10>
+ 7a8:	82 30       	cpi	r24, 0x02	; 2
+ 7aa:	a9 f0       	breq	.+42     	; 0x7d6 <DIO_GetPinValue+0x34>
+ 7ac:	83 30       	cpi	r24, 0x03	; 3
+ 7ae:	e1 f0       	breq	.+56     	; 0x7e8 <DIO_GetPinValue+0x46>
+ 7b0:	24 c0       	rjmp	.+72     	; 0x7fa <DIO_GetPinValue+0x58>
+	{
+		case DIO_PORTA: dioRead = GET_BIT(_DIO_PINA, pin); break;
+ 7b2:	89 b3       	in	r24, 0x19	; 25
+ 7b4:	90 e0       	ldi	r25, 0x00	; 0
+ 7b6:	02 c0       	rjmp	.+4      	; 0x7bc <DIO_GetPinValue+0x1a>
+ 7b8:	95 95       	asr	r25
+ 7ba:	87 95       	ror	r24
+ 7bc:	6a 95       	dec	r22
+ 7be:	e2 f7       	brpl	.-8      	; 0x7b8 <DIO_GetPinValue+0x16>
+ 7c0:	81 70       	andi	r24, 0x01	; 1
+ 7c2:	08 95       	ret
+		case DIO_PORTB: dioRead = GET_BIT(_DIO_PINB, pin); break;
+ 7c4:	86 b3       	in	r24, 0x16	; 22
+ 7c6:	90 e0       	ldi	r25, 0x00	; 0
+ 7c8:	02 c0       	rjmp	.+4      	; 0x7ce <DIO_GetPinValue+0x2c>
+ 7ca:	95 95       	asr	r25
+ 7cc:	87 95       	ror	r24
+ 7ce:	6a 95       	dec	r22
+ 7d0:	e2 f7       	brpl	.-8      	; 0x7ca <DIO_GetPinValue+0x28>
+ 7d2:	81 70       	andi	r24, 0x01	; 1
+ 7d4:	08 95       	ret
+		case DIO_PORTC: dioRead = GET_BIT(_DIO_PINC, pin); break;
+ 7d6:	83 b3       	in	r24, 0x13	; 19
+ 7d8:	90 e0       	ldi	r25, 0x00	; 0
+ 7da:	02 c0       	rjmp	.+4      	; 0x7e0 <DIO_GetPinValue+0x3e>
+ 7dc:	95 95       	asr	r25
+ 7de:	87 95       	ror	r24
+ 7e0:	6a 95       	dec	r22
+ 7e2:	e2 f7       	brpl	.-8      	; 0x7dc <DIO_GetPinValue+0x3a>
+ 7e4:	81 70       	andi	r24, 0x01	; 1
+ 7e6:	08 95       	ret
+		case DIO_PORTD: dioRead = GET_BIT(_DIO_PIND, pin); break;
+ 7e8:	80 b3       	in	r24, 0x10	; 16
+ 7ea:	90 e0       	ldi	r25, 0x00	; 0
+ 7ec:	02 c0       	rjmp	.+4      	; 0x7f2 <DIO_GetPinValue+0x50>
+ 7ee:	95 95       	asr	r25
+ 7f0:	87 95       	ror	r24
+ 7f2:	6a 95       	dec	r22
+ 7f4:	e2 f7       	brpl	.-8      	; 0x7ee <DIO_GetPinValue+0x4c>
+ 7f6:	81 70       	andi	r24, 0x01	; 1
+ 7f8:	08 95       	ret
+	}
+}
+
+uint8_t DIO_GetPinValue(dioPort port, dioPin pin)
+{
+	uint8_t dioRead = 0;
+ 7fa:	80 e0       	ldi	r24, 0x00	; 0
+		case DIO_PORTB: dioRead = GET_BIT(_DIO_PINB, pin); break;
+		case DIO_PORTC: dioRead = GET_BIT(_DIO_PINC, pin); break;
+		case DIO_PORTD: dioRead = GET_BIT(_DIO_PIND, pin); break;
+	}
+	return dioRead;
+}
+ 7fc:	08 95       	ret
+
+000007fe <EEPROM_Write_Byte>:
+
+#include "EEPROM_Interface.h"
+
+void EEPROM_Write_Byte(uint16_t uinAddress, uint8_t uinData)
+{
+	while(_EEPROM_EECR & (1<<EEWE));
+ 7fe:	e1 99       	sbic	0x1c, 1	; 28
+ 800:	fe cf       	rjmp	.-4      	; 0x7fe <EEPROM_Write_Byte>
+	if(uinAddress >= 0 && uinAddress < 1024)
+ 802:	81 15       	cp	r24, r1
+ 804:	24 e0       	ldi	r18, 0x04	; 4
+ 806:	92 07       	cpc	r25, r18
+ 808:	28 f4       	brcc	.+10     	; 0x814 <EEPROM_Write_Byte+0x16>
+	{
+		_EEPROM_EEAR = uinAddress;
+ 80a:	9f bb       	out	0x1f, r25	; 31
+ 80c:	8e bb       	out	0x1e, r24	; 30
+		_EEPROM_EEDR = uinData;
+ 80e:	6d bb       	out	0x1d, r22	; 29
+		_EEPROM_EECR |= (1<<EEMWE);
+ 810:	e2 9a       	sbi	0x1c, 2	; 28
+		_EEPROM_EECR |= (1<<EEWE);
+ 812:	e1 9a       	sbi	0x1c, 1	; 28
+ 814:	08 95       	ret
+
+00000816 <EEPROM_Read_Byte>:
+}
+
+uint8_t EEPROM_Read_Byte(uint16_t uinAddress)
+{
+	uint8_t eepromData = 0;
+	while(_EEPROM_EECR & (1<<EEWE));
+ 816:	e1 99       	sbic	0x1c, 1	; 28
+ 818:	fe cf       	rjmp	.-4      	; 0x816 <EEPROM_Read_Byte>
+	if(uinAddress >= 0 && uinAddress < 1024)
+ 81a:	81 15       	cp	r24, r1
+ 81c:	24 e0       	ldi	r18, 0x04	; 4
+ 81e:	92 07       	cpc	r25, r18
+ 820:	28 f4       	brcc	.+10     	; 0x82c <EEPROM_Read_Byte+0x16>
+	{
+		_EEPROM_EEAR = uinAddress;
+ 822:	9f bb       	out	0x1f, r25	; 31
+ 824:	8e bb       	out	0x1e, r24	; 30
+		_EEPROM_EECR |= (1<<EERE);
+ 826:	e0 9a       	sbi	0x1c, 0	; 28
+		eepromData = _EEPROM_EEDR;
+ 828:	8d b3       	in	r24, 0x1d	; 29
+ 82a:	08 95       	ret
+	}
+}
+
+uint8_t EEPROM_Read_Byte(uint16_t uinAddress)
+{
+	uint8_t eepromData = 0;
+ 82c:	80 e0       	ldi	r24, 0x00	; 0
+		_EEPROM_EEAR = uinAddress;
+		_EEPROM_EECR |= (1<<EERE);
+		eepromData = _EEPROM_EEDR;
+	}
+	return eepromData;
+}
+ 82e:	08 95       	ret
+
+00000830 <__udivmodsi4>:
+ 830:	a1 e2       	ldi	r26, 0x21	; 33
+ 832:	1a 2e       	mov	r1, r26
+ 834:	aa 1b       	sub	r26, r26
+ 836:	bb 1b       	sub	r27, r27
+ 838:	fd 01       	movw	r30, r26
+ 83a:	0d c0       	rjmp	.+26     	; 0x856 <__udivmodsi4_ep>
+
+0000083c <__udivmodsi4_loop>:
+ 83c:	aa 1f       	adc	r26, r26
+ 83e:	bb 1f       	adc	r27, r27
+ 840:	ee 1f       	adc	r30, r30
+ 842:	ff 1f       	adc	r31, r31
+ 844:	a2 17       	cp	r26, r18
+ 846:	b3 07       	cpc	r27, r19
+ 848:	e4 07       	cpc	r30, r20
+ 84a:	f5 07       	cpc	r31, r21
+ 84c:	20 f0       	brcs	.+8      	; 0x856 <__udivmodsi4_ep>
+ 84e:	a2 1b       	sub	r26, r18
+ 850:	b3 0b       	sbc	r27, r19
+ 852:	e4 0b       	sbc	r30, r20
+ 854:	f5 0b       	sbc	r31, r21
+
+00000856 <__udivmodsi4_ep>:
+ 856:	66 1f       	adc	r22, r22
+ 858:	77 1f       	adc	r23, r23
+ 85a:	88 1f       	adc	r24, r24
+ 85c:	99 1f       	adc	r25, r25
+ 85e:	1a 94       	dec	r1
+ 860:	69 f7       	brne	.-38     	; 0x83c <__udivmodsi4_loop>
+ 862:	60 95       	com	r22
+ 864:	70 95       	com	r23
+ 866:	80 95       	com	r24
+ 868:	90 95       	com	r25
+ 86a:	9b 01       	movw	r18, r22
+ 86c:	ac 01       	movw	r20, r24
+ 86e:	bd 01       	movw	r22, r26
+ 870:	cf 01       	movw	r24, r30
+ 872:	08 95       	ret
+
+00000874 <__tablejump2__>:
+ 874:	ee 0f       	add	r30, r30
+ 876:	ff 1f       	adc	r31, r31
+ 878:	05 90       	lpm	r0, Z+
+ 87a:	f4 91       	lpm	r31, Z
+ 87c:	e0 2d       	mov	r30, r0
+ 87e:	09 94       	ijmp
+
+00000880 <_exit>:
+ 880:	f8 94       	cli
+
+00000882 <__stop_program>:
+ 882:	ff cf       	rjmp	.-2      	; 0x882 <__stop_program>
